@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+    <idinfo>
+        <citation>
+            <citeinfo>
+                <title>Fire Perimeters</title>
+            </citeinfo>
+        </citation>
+        <descript>
+            <abstract>The fire perimeter and prescribed fire feature service provides a reasonable view of the spatial distribution of past fires. Because of missing perimeters (see Use Limitation) this layer should be used with care in statistical analysis and reporting. Includes separate layers for just large fires (5000+ acres and last 5 years) and by decade (since 1950). The
+data and service is updated annually with fire perimeters from the previous fire 
+season. This service represents the latest official release, and is 
+updated annually when a new version is released. As of April 2023, it 
+represents fire22_1.CAL FIRE (including contract
+counties), USDA Forest Service Region 5, USDI Bureau of Land Management &amp;amp;
+National Park Service, and other agencies jointly maintain a comprehensive fire
+perimeter GIS layer for public and private lands throughout the state. The data
+covers fires back to 1878.
+
+Current criteria for data
+collection are as follows:
+
+CAL FIRE (including contract
+counties) submit perimeters ≥10 acres in timber, ≥50 acres in brush, or ≥300
+acres in grass, and/or ≥3 damaged/ destroyed residential or commercial
+structures, and/or caused ≥1 fatality.
+
+All cooperating agencies
+submit perimeters ≥10 acres.California Fire Perimeters (all): Includes all CAL FIRE fire history.  It is scale dependent and starts 
+displaying at the country level scale. Recent Large Fire Perimeters (&amp;gt;=5000 acres):  Includes a subset of large fires for the last 5 years of fires 2018-2022, symbolized with color by year and  is scale dependent and starts 
+displaying at the country level scale. Year-only labels for recent large fires.California Fire Perimeters (1950+):   Symbolized by decade, and those all display starting at country level scale. Prescribed Burns:  begin displaying at county level scale. </abstract>
+            <purpose>CAL FIRE Wildfire Perimeters and Prescribed Burns.  The service includes layers that are data subsets symbolized by size and year.  Hosted on CAL FIRE AGOL.</purpose>
+        </descript>
+        <keywords>
+            <theme>
+                <themekt>None</themekt>
+                <themekey>wildfires</themekey>
+                <themekey>CAL FIRE</themekey>
+                <themekey>FRAP</themekey>
+                <themekey>California</themekey>
+                <themekey>fire perimeters</themekey>
+                <themekey>fire</themekey>
+                <themekey>Fire and Fuels</themekey>
+                <themekey>California Forestry and Fire Protection</themekey>
+                <themekey>CAOpenData</themekey>
+            </theme>
+        </keywords>
+        <accconst>None</accconst>
+        <useconst>The State of California and the Department of Forestry and 
+Fire Protection make no representations or warranties regarding the accuracy of data or maps.  
+Neither the State nor the Department shall be liable under any circumstances for any direct, special, 
+incidental, or consequential damages with respect to any claim by any user or third party on account of,
+ or arising from, the use of data or maps.
+For more information about this product, date or terms of use, 
+contact calfire.egis@fire.ca.gov.</useconst>
+        <datacred>CALFIRE, USDA Forest Service, other Federal Partners</datacred>
+    </idinfo>
+    <metainfo>
+        <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+        <metstdv>FGDC-STD-001-1998</metstdv>
+        <mettc>local time</mettc>
+    </metainfo>
+</metadata>
