@@ -27,7 +27,10 @@ The easiest way to run an app is with the `runGitHub()` function from the `"shin
 library(shiny)
 
 # Run an app from a subdirectory in the repo
-runGitHub(repo = "shiny", username = "data133", subdir = "old-faithful-default")
+runGitHub(
+  repo = "shiny", 
+  username = "data133", 
+  subdir = "old-faithful1-default")
 ```
 
 
