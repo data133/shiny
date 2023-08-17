@@ -1,7 +1,7 @@
-# Scatterplots of NBA players' variables
+# Mapping Storms in the North Atlantic
 
-This is a Shiny app that generates an interactive scatterplot to visualize the 
-relationship of some NBA players' data.
+This is a Shiny app that generates a map---via `"ggplot2"`---to 
+visualize storms in the North Atlantic for a given year.
 
 The scatterplot that is displayed is a `"plotly"` graphic that is generated
 by passing a `"ggplot"` object to `ggplotly()`.
@@ -9,22 +9,10 @@ by passing a `"ggplot"` object to `ggplotly()`.
 
 ## Data
 
-This app uses data from NBA players (regular season 2022), specifically
-the following quantitative variables:
-
-- `height`: height (in inches) of players,
-- `weight`: weight (in pounds) of players,
-- `age`: age (in years) of players, 
-- `experience`: years of experience playing in the NBA,
-- `salary`: salary (in dollars) of players,
-- `points3`: triple pointers made by players,
-- `points2`: double pointers made by players,
-- `points1`: free throws made by players,
-- `total_rebounds`: total rebounds (offensive + defensive) made by players,
-- `assists`: number of assists made by players,
-- `blocks`: number of blocks made by players,
-- `turnovers`: number of turnovers made by players.
-
+This app uses the `storms` data from the tidyverse package `"dplyr"`.
+This dataset is the NOAA Atlantic hurricane database best track data,
+<https://www.nhc.noaa.gov/data/#hurdat>. The data includes the positions and 
+attributes of storms from 1975-2021.
 
 
 ## How to run it?
@@ -37,6 +25,6 @@ library(shiny)
 runGitHub(
   repo = "shiny", 
   username = "data133", 
-  subdir = "nba-scatterplots3-ggplotly")
+  subdir = "mapping-storms2-ggplotly")
 ```
 
