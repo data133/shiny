@@ -41,7 +41,7 @@ ui <- fluidPage(
     ),
     
     # -------------------------------------------------------
-    # Main Panel with output: plot of the generated distribution
+    # Main Panel with output: plot of timeline
     # -------------------------------------------------------
     mainPanel(
       plotOutput(outputId = "graphic")
@@ -72,7 +72,8 @@ server <- function(input, output) {
     # add points
     points(x = time, y = fv, col = "blue", pch = 20)
   })
-}
+  
+} # closes server
 
 
 # Run the application 
