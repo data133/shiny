@@ -25,13 +25,13 @@ ui <- fluidPage(
     # -------------------------------------------------------
     sidebarLayout(
         sidebarPanel(
-            sliderInput("trials",
-                        "Number of trials:",
+            sliderInput(inputId = "trials",
+                        label = "Number of trials:",
                         min = 1,
                         max = 10,
                         value = 5),
-            sliderInput("prob_success",
-                        "Probability of success:",
+            sliderInput(inputId = "prob_success",
+                        label = "Probability of success:",
                         min = 0,
                         max = 1,
                         value = 0.5)
@@ -41,7 +41,7 @@ ui <- fluidPage(
         # Main Panel with output: plot of the generated distribution
         # ----------------------------------------------------------
         mainPanel(
-           plotOutput("distPlot")
+           plotOutput(outputId = "distPlot")
         )
     ) # closes sidebarLayout
 ) # closes fluidPage
