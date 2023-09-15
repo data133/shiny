@@ -28,8 +28,8 @@ ui <- fluidPage(
                   label = "Variable",
                   choices = names(faithful),
                   selected = "waiting"),
-      sliderInput("bins",
-                  "Number of bins:",
+      sliderInput(inputId = "bins",
+                  label = "Number of bins:",
                   min = 1,
                   max = 50,
                   value = 30),
@@ -43,7 +43,7 @@ ui <- fluidPage(
     # Main Panel with output: plot of the generated distribution
     # ----------------------------------------------------------
     mainPanel(
-      plotOutput("distPlot")
+      plotOutput(outputId = "distPlot")
     )
   ) # closes sidebarLayout
 ) # closes fluidPage
@@ -56,7 +56,7 @@ server <- function(input, output) {
   
   output$distPlot <- renderPlot({
     # generate bins based on input$bins from ui.R
-    x    <- faithful[, input$variable]
+    x    <- faithful[ , input$variable]
     bins <- seq(min(x), max(x), length.out = input$bins + 1)
     
     # draw the histogram with the specified number of bins
@@ -72,7 +72,9 @@ server <- function(input, output) {
       NULL
     }
   })
-}
+  
+} # closes server
+
 
 # Run the application 
 shinyApp(ui = ui, server = server)
