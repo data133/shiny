@@ -16,7 +16,10 @@ library(shiny)
 # ===============================================
 # Auxiliary function
 # ===============================================
-# Descriptive Statistics
+# title: Descriptive Statistics
+# description: computes descriptive statistics
+# input: x numeric vector
+# output: vector with Q1, mean, median, and Q3
 descriptive = function(x) {
   c(quantile(x, prob = 0.25),
     mean(x),
@@ -38,13 +41,13 @@ ui <- fluidPage(
   # -------------------------------------------------------
   sidebarLayout(
     sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
+      sliderInput(inputId = "bins",
+                  label = "Number of bins:",
                   min = 1,
                   max = 50,
                   value = 30),
       checkboxInput(inputId = "avg", 
-                    label = "Show stats", 
+                    label = "Show descriptive stats", 
                     value = FALSE)
     ),
     
@@ -52,7 +55,7 @@ ui <- fluidPage(
     # Main Panel with output: plot of the generated distribution
     # ----------------------------------------------------------
     mainPanel(
-      plotOutput("distPlot")
+      plotOutput(outputId = "distPlot")
     )
   ) # closes sidebarLayout
 ) # closes fluidPage
@@ -76,7 +79,10 @@ server <- function(input, output) {
     # decide whether to show lines of descriptive statistics
     if (input$avg == TRUE) {
       stats = descriptive(x)
-      abline(v = stats, col = "red", lwd = 3, lty = 2)
+      abline(v = stats,
+             lwd = 3, 
+             col = c("red", "blue", "red", "red"),
+             lty = c(2, 3, 2, 2))
     }
   })
 }
