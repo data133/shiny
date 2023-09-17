@@ -74,7 +74,7 @@ ui <- fluidPage(
 server <- function(input, output) {
   
   output$graphic <- renderPlot({
-    gg = ggplot(dat, aes_string(x = input$variable)) +
+    gg = ggplot(dat, aes(x = .data[[input$variable]])) +
       geom_histogram(bins = input$bins, fill = "#3B76F5", color = "white") +
       labs(title = paste0(input$variable, " histogram")) +
       theme_minimal()
