@@ -4,10 +4,17 @@
 # and faceting, using the package "ggplot2"
 # Data: "mtcars"
 
+
+# ===============================================
+# Packages
+# ===============================================
 library(shiny)
 library(tidyverse)
 
-# Define UI for application that draws a histogram
+
+# ===========================================================
+# Define UI for application that draws a scatter plot
+# ===========================================================
 ui <- fluidPage(
 
     # Application title
@@ -48,12 +55,15 @@ ui <- fluidPage(
 
         # Show a plot of the generated distribution
         mainPanel(
-           plotOutput("distPlot")
+           plotOutput(outputId = "distPlot")
         )
-    )
-)
+    ) # closes sidebarLayout
+) # closes fluidPage
 
+
+# ======================================================
 # Define server logic required to draw a scatterplot
+# ======================================================
 server <- function(input, output) {
 
     output$distPlot <- renderPlot({
@@ -77,7 +87,8 @@ server <- function(input, output) {
         }
             
     })
-}
+} # closes server
+
 
 # Run the application 
 shinyApp(ui = ui, server = server)
