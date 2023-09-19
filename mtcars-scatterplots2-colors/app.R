@@ -5,11 +5,18 @@
 #     and color picker.
 # Data: "mtcars" 
 
+
+# ===============================================
+# Packages
+# ===============================================
 library(shiny)
 library(ggplot2)
 library(colourpicker)
 
-# Define UI for application that draws a histogram
+
+# ===========================================================
+# Define UI for application that draws a scatter plot
+# ===========================================================
 ui <- fluidPage(
   
   # Application title
@@ -49,14 +56,17 @@ ui <- fluidPage(
                   allowTransparent = TRUE)
     ),
     
-    # Show a plot of the generated distribution
+    # Show a plot of the selected variables
     mainPanel(
-      plotOutput("distPlot")
+      plotOutput(outputId = "distPlot")
     )
-  )
-)
+  ) # closes sidebarLayout
+) # closes fluidPage
 
+
+# ======================================================
 # Define server logic required to draw a scatterplot
+# ======================================================
 server <- function(input, output) {
   
   output$distPlot <- renderPlot({
@@ -83,7 +93,8 @@ server <- function(input, output) {
     }
      
   })
-}
+} # closes server
+
 
 # Run the application 
 shinyApp(ui = ui, server = server)
