@@ -1,5 +1,6 @@
 # Title: Mapping Storms
-# Description: Map of North Atlantic with trajectories of tropical storms 
+# Description: Plots a map of North Atlantic with trajectories of tropical 
+# storms, and displays a table with the starting date of the storm.
 # Details: uses a slider input to select a given year
 # Author: Gaston Sanchez
 # Date: Summer 2023
@@ -23,9 +24,12 @@ world_countries = ne_countries(returnclass = "sf")
 # ggplot object for north Atlantic map
 # (this is our "canvas" on which storms will be added in the 'server' part)
 atlantic_map = ggplot(data = world_countries) +
-  geom_sf() +
+  geom_sf(fill = "gray95") +
   coord_sf(xlim = c(-110, 0), ylim = c(5, 65)) +
-  theme(panel.background = element_blank())
+  theme(panel.background = element_blank(),
+        axis.ticks = element_blank(), # hide tick marks
+        axis.text = element_blank()) + # hide degree values of lat & lon
+  labs(x = "", y = "") # hide axis labels
 
 
 # ===========================================================
@@ -42,7 +46,7 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       sliderInput(inputId = "year",
-                  label = "Year:",
+                  label = "Select a Year:",
                   sep = "", # no separator between thousands places
                   min = 1975,
                   max = 2021,
@@ -53,7 +57,9 @@ ui <- fluidPage(
     # Main Panel with output: plot map of storms
     # ----------------------------------------------------------
     mainPanel(
-      plotOutput(outputId = "graphic")
+      plotOutput(outputId = "plot_map"),
+      hr(),
+      dataTableOutput(outputId = "summary_table")
     )
   ) # closes sidebarLayout
 ) # closes fluidPage
@@ -64,18 +70,30 @@ ui <- fluidPage(
 # ======================================================
 server <- function(input, output) {
   
-  output$graphic <- renderPlot({
+  # reactive table of filtered storms
+  tbl = reactive({
     # storms in a selected year
-    dat <- filter(storms, year == input$year)
-    
+    storms %>% 
+      filter(year == input$year)
+  })
+  
+  # map of storms
+  output$plot_map <- renderPlot({
     # draw the map with trajectories of storms
     atlantic_map +
       geom_point(
-        data = dat, 
+        data = tbl(), 
         aes(x = long, y = lat, group = name, color = name)) +
       geom_path(
-        data = dat, 
+        data = tbl(), 
         aes(x = long, y = lat, group = name, color = name))
+  })
+
+  # summary table
+  output$summary_table <- renderDataTable({
+    tbl() %>%
+      group_by(name) %>%
+      summarise(start_date = paste0(first(month), "-", first(day)))
   })
   
 } # closes server
