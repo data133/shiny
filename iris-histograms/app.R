@@ -2,7 +2,7 @@
 # description: Graphs a histogram, and computes descriptive statistics
 # for a selected variable from the iris data.
 # author: Gaston Sanchez
-# date: Summer 2023
+# date: Sep-22
 
 
 # ===============================================
@@ -20,9 +20,7 @@ ui <- fluidPage(
   # Application title
   titlePanel("Iris Data"),
   
-  # -------------------------------------------------------
-  # Sidebar with input widgets 
-  # -------------------------------------------------------
+  # Sidebar with a select-box input
   sidebarLayout(
     sidebarPanel(
       selectInput(inputId = "variable", 
@@ -36,9 +34,7 @@ ui <- fluidPage(
                   value = 10)
     ), # closes sidebarPanel of inputs
     
-    # -------------------------------------------------------
-    # Main Panel with output: histograms, and table of summary statistics
-    # -------------------------------------------------------
+    # Outputs: histograms, and table of summary statistics
     mainPanel(
       h3("Histograms"),
       plotOutput(outputId = "graphic"),
@@ -46,7 +42,6 @@ ui <- fluidPage(
       h3("Summary Stats"),
       tableOutput(outputId = "summary")
     )
-    
   ) # closes sidebarLayout
 ) # closes fluidPage
 
@@ -56,7 +51,7 @@ ui <- fluidPage(
 # ==============================================================
 server <- function(input, output) {
   
-  # output histograms
+  # output histogram
   output$graphic <- renderPlot({
     # notice the use of "tidy evaluation" when mapping the variable!!!
     ggplot(iris, aes(x = .data[[input$variable]])) +
