@@ -66,7 +66,7 @@ ui <- fluidPage(
 server <- function(input, output) {
   
   output$graphic <- renderPlot({
-    ggplot(dat, aes_string(x = input$xvar, y = input$yvar)) +
+    ggplot(dat, aes(x = .data[[input$xvar]], y = .data[[input$yvar]])) +
       geom_point(size = 3, alpha = 0.5) +
       theme_minimal()
   })
