@@ -17,7 +17,7 @@ library(plotly)
 # ===============================================
 # Data
 # ===============================================
-dat = read_csv("nba2022-clean.csv")
+dat = read_csv("../data/nba2022-clean.csv")
 
 # quantitative variables
 variables = c(
@@ -67,7 +67,7 @@ ui <- fluidPage(
 server <- function(input, output) {
   
   output$graphic <- renderPlotly({
-    gg = ggplot(dat, aes_string(x = input$xvar, y = input$yvar)) +
+    gg = ggplot(dat, aes(x = .data[[input$xvar]], y = .data[[input$yvar]])) +
       geom_point(aes(text = player),  # text mapping for ggplotly
                  size = 2, alpha = 0.5, color = "#584BE8") +
       theme_minimal()
