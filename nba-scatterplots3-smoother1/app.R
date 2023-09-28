@@ -16,7 +16,7 @@ library(tidyverse)
 # ===============================================
 # Data
 # ===============================================
-dat = read_csv("nba2022-clean.csv")
+dat = read_csv("../data/nba2022-clean.csv")
 
 # quantitative variables
 variables = c(
@@ -71,7 +71,7 @@ server <- function(input, output) {
   
   output$graphic <- renderPlot({
     
-    gg = ggplot(dat, aes_string(x = input$xvar, y = input$yvar)) +
+    gg = ggplot(dat, aes(x = .data[[input$xvar]], y = .data[[input$yvar]])) +
       geom_point() +
       theme_minimal()
     # add smoother?
