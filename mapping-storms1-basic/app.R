@@ -66,7 +66,7 @@ ui <- fluidPage(
 
 
 # ======================================================
-# Define server logic required to graph the map
+# Define server to graph the map, and display table
 # ======================================================
 server <- function(input, output) {
   
@@ -75,12 +75,12 @@ server <- function(input, output) {
   # ----------------------------------------------------------
   tbl = reactive({
     # storms in a selected year
-    storms %>% 
+    storms |>
       filter(year == input$year)
   })
   
   # ----------------------------------------------------------
-  # map of storms
+  # output: map of storms
   # ----------------------------------------------------------
   output$plot_map <- renderPlot({
     # draw the map with trajectories of storms
@@ -94,11 +94,11 @@ server <- function(input, output) {
   })
 
   # ----------------------------------------------------------
-  # summary table
+  # output: summary table
   # ----------------------------------------------------------
   output$summary_table <- renderDataTable({
-    tbl() %>%
-      group_by(name) %>%
+    tbl() |>
+      group_by(name) |>
       summarise(start_date = paste0(first(month), "-", first(day)))
   })
   
