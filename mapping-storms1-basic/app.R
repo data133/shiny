@@ -70,14 +70,18 @@ ui <- fluidPage(
 # ======================================================
 server <- function(input, output) {
   
+  # ----------------------------------------------------------
   # reactive table of filtered storms
+  # ----------------------------------------------------------
   tbl = reactive({
     # storms in a selected year
     storms %>% 
       filter(year == input$year)
   })
   
+  # ----------------------------------------------------------
   # map of storms
+  # ----------------------------------------------------------
   output$plot_map <- renderPlot({
     # draw the map with trajectories of storms
     atlantic_map +
@@ -89,7 +93,9 @@ server <- function(input, output) {
         aes(x = long, y = lat, group = name, color = name))
   })
 
+  # ----------------------------------------------------------
   # summary table
+  # ----------------------------------------------------------
   output$summary_table <- renderDataTable({
     tbl() %>%
       group_by(name) %>%
