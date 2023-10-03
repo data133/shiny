@@ -1,6 +1,7 @@
 # title: Univariate exploration of Iris data.
 # description: Graphs a histogram, and computes descriptive statistics
 # for a selected variable from the iris data.
+# data: iris
 # author: Gaston Sanchez
 # date: Sep-22
 
