@@ -18,13 +18,13 @@ library(rnaturalearth)  # map data sets from Natural Earth
 # ===============================================
 # Auxiliary objects
 # ===============================================
-# natural earth world country polygons
+# world country polygons (from natural earth)
 world_countries = ne_countries(returnclass = "sf")
 
-# ggplot object for north Atlantic map
+# ggplot object for North Atlantic map
 # (this is our "canvas" on which storms will be added in the 'server' part)
-atlantic_map = ggplot(data = world_countries) +
-  geom_sf(fill = "gray95") +
+atlantic_map = ggplot() +
+  geom_sf(data = world_countries, fill = "gray95") +
   coord_sf(xlim = c(-110, 0), ylim = c(5, 65)) +
   theme(panel.background = element_blank(),
         axis.ticks = element_blank(), # hide tick marks
@@ -71,7 +71,7 @@ ui <- fluidPage(
 server <- function(input, output) {
   
   # ----------------------------------------------------------
-  # reactive table of filtered storms
+  # table of filtered storms (this is a reactive conductor!)
   # ----------------------------------------------------------
   tbl = reactive({
     # storms in a selected year
