@@ -1,6 +1,6 @@
 # Shiny Apps for STAT 133
 
-This repository contains some of the shiny apps used in STAT 133 Concepts in Computing with Data.
+This repository contains some of the shiny apps used in **STAT 133 Concepts in Computing with Data** (at UC Berkeley).
 
 
 ## Software Requirements
