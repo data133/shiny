@@ -21,7 +21,9 @@ You will also need to have installed the following packages:
 
 ## Running the apps
 
-The easiest way to run an app is with the `runGitHub()` function from the `"shiny"` package. For instance, to run the app contained in the folder [old-faithful1-default](/old-faithful1-default), run the following code in R:
+The easiest way to run an app is with the `runGitHub()` function from the 
+`"shiny"` package. For instance, to run the app contained in the folder 
+[old-faithful1-default](/old-faithful1-default), run the following code in R:
 
 ```R
 library(shiny)
