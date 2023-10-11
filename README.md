@@ -1,11 +1,13 @@
 # Shiny Apps for STAT 133
 
-This repository contains some of the shiny apps used in **STAT 133 Concepts in Computing with Data** (at UC Berkeley).
+This repository contains some of the shiny apps used in 
+**STAT 133 Concepts in Computing with Data** (at UC Berkeley).
 
 
 ## Software Requirements
 
-The required software is __[R](https://www.r-project.org/)__ and __[RStudio](https://www.rstudio.com/)__ (preferably a recent version).
+The required software is __[R](https://www.r-project.org/)__ and
+__[RStudio](https://www.rstudio.com/)__ (preferably a recent version).
 
 You will also need to have installed the following packages:
 
