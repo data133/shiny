@@ -34,9 +34,7 @@ cal_counties_map = ggplot() +
 
 
 # Load Data (Shape files)
-fire_perims = st_read(
-  paste0("../data/California_Fire_Perimeters/",
-         "California_Fire_Perimeters__1950__.shp"))
+fire_perims = st_read("../data/California_Fire_Perimeters/")
 
 cal_perims = fire_perims |>
   filter(STATE == "CA")
