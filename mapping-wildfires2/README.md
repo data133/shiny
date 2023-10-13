@@ -14,7 +14,8 @@ hosted on CAL FIRE portal:
 
 <https://gis.data.ca.gov/maps/CALFIRE-Forestry::california-fire-perimeters-all-1>
 
-A copy of this data set is available in the `data/` folder of this repository
+A copy of this data (in shapefile format) set is available in the `data/` 
+folder of this repository
 [California_Fire_Perimeters](../data/California_Fire_Perimeters). 
 Keep in mind that this folder contains the shape files used to graph the
 polygons of the fire perimeters on a map.
