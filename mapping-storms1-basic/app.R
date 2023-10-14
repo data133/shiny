@@ -6,18 +6,18 @@
 # Date: Summer 2023
 
 
-# ===============================================
+# ==================================================
 # Packages
-# ===============================================
+# ==================================================
 library(shiny)
 library(tidyverse)      # for syntactic manipulation of tables
 library(sf)             # provides classes and functions for vector data
 library(rnaturalearth)  # map data sets from Natural Earth
 
 
-# ===============================================
-# Auxiliary objects
-# ===============================================
+# ==================================================
+# Auxiliary objects (don't depend on input widgets)
+# ==================================================
 # world country polygons (from natural earth)
 world_countries = ne_countries(returnclass = "sf")
 
