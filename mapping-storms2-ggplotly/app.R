@@ -12,7 +12,7 @@ library(shiny)
 library(tidyverse)      # for syntactic manipulation of tables
 library(sf)             # provides classes and functions for vector data
 library(rnaturalearth)  # map data sets from Natural Earth
-library(plotly)         # for interactive gaphics
+library(plotly)         # for interactive graphics
 
 
 # ===============================================
