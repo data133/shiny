@@ -10,8 +10,8 @@
 # Packages
 # ===============================================
 library(shiny)
-library(tidyverse)
-library(plotly)
+library(tidyverse)      # for syntactic manipulation of tables
+library(plotly)         # for interactive graphics
 
 
 # ===============================================
