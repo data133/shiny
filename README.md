@@ -18,6 +18,7 @@ You will also need to have installed the following packages:
 - `"sf"`
 - `"rnaturalearth"`
 - `"leaflet"`
+- `"bslib"`
 
 
 
