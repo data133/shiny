@@ -1,7 +1,7 @@
 # Title: Basic Investing Simulator
 # Description: Simulates investing periodic contributions, for a number of years. 
 # The rate of return for every year is a variable rate that is randomly 
-# generated according to a normal distrib.
+# generated according to a normal distribution.
 # Details: The layout of the app uses a dashboard theme from package "bslib" 
 # Author: Gaston Sanchez
 # Date: Fall 2023
