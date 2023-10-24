@@ -5,7 +5,7 @@ visualize and explore the relationship of variables in `mtcars`. Likewise,
 it also renders a Data Table with the selected variables, and the transmission
 (variable `am`) of the cars.
 
-On the layout side of things, this app is shiny dashboard app based on the
+On the layout side of things, this app is __shiny dashboard__ app based on the
 package `"bslib"`. To see more information about shiny dashboards go to:
 
 <https://rstudio.github.io/bslib/>
