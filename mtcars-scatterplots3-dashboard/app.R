@@ -1,6 +1,6 @@
 # Title: Exploring scatterplots of mtcars data
 # Description: Shiny app that shows a scatterplot, including regression line,
-# and faceting, using the package "ggplot2", and rendering via plotly.
+# and faceting, using the package "ggplot2", and rendering via ggplotly().
 # Details: The layout of this app is a shiny dashboard using functions from
 # the package "bslib"
 # Data: "mtcars"
