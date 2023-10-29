@@ -17,7 +17,7 @@ You will also need to have installed the following packages:
 - `"tidytext"`
 - `"plotly"`
 - `"sf"`
-- `"rnaturalearth"`
+- `"rnaturalearth"`, and possibly `"rnaturalearthhires"`
 - `"leaflet"`
 - `"bslib"`
 
