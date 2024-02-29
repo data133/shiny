@@ -1,9 +1,9 @@
 # Title: Basic Investing Simulator
-# Description: Simulates investing a lump sum, and optional periodic
-# contributions, for a number of years. The rate of return for every year
-# is a variable rate that is randomly generated according to a normal distrib.
+# Description: Simulates investing a lump sum for a number of years. 
+# The rate of return for every year is a variable rate that is randomly 
+# generated according to a uniform distrib.
 # Author: Gaston Sanchez
-# Date: Summer 2023
+# Date: Spring 2024
 
 
 # ===============================================
@@ -18,9 +18,9 @@ library(tidyverse)
 # ===========================================================
 ui <- fluidPage(
   
-  titlePanel("Investing Simulator"),
+  titlePanel("Basic Investing Simulator"),
   fluidRow(
-    column(2,
+    column(4,
            # initial amount and time (years)
            numericInput(inputId = 'initial', 
                         label = 'Initial Amount ($)', 
@@ -33,30 +33,23 @@ ui <- fluidPage(
                         max = 50,
                         value = 10)
     ),
-    column(4, offset = 0.4,
-           # Contributions
-           numericInput(inputId = 'contribution', 
-                        label = 'Periodic Contribution amount ($)', 
-                        min = 0, 
-                        max = 5000,
-                        value = 30)
-    ),
-    column(3,
-           # Average return rate and volatility
-           sliderInput(inputId = 'annual_rate', 
-                       label = 'Average annual rate (in %)', 
+    column(4,
+           # Minimum rate of return (for uniform distribution)
+           sliderInput(inputId = 'min_rate', 
+                       label = 'Minimum rate (in %)', 
+                       min = -5, 
+                       max = 0,
+                       value = -5,
+                       step = 1),
+           # Maximum rate of return (for uniform distribution)
+           sliderInput(inputId = 'max_rate', 
+                       label = 'Maximum rate (in %)', 
                        min = 0, 
-                       max = 30,
+                       max = 15,
                        value = 10,
-                       step = 0.1),
-           sliderInput(inputId = 'annual_volatility', 
-                       label = 'Average annual volatility (in %)', 
-                       min = 0, 
-                       max = 30,
-                       value = 18,
-                       step = 0.1),
+                       step = 1),
     ),
-    column(3,
+    column(4,
            # simulation settings
            numericInput(inputId = 'repetitions', 
                         label = 'Repetitions', 
@@ -76,7 +69,7 @@ ui <- fluidPage(
   
   hr(),
   h4('Summary Statistics'),
-  verbatimTextOutput('stats')
+  dataTableOutput('stats')
 ) # closes fluidPage
 
 
@@ -89,9 +82,7 @@ server <- function(input, output) {
     # translation
     set.seed(input$seed)
     n <- input$years
-    rate_avg <- (input$annual_rate / 100)
-    rate_sd <- (input$annual_volatility / 100)
-    
+
     # periods (k=1 year, k=12 monthly)
     periods <- 1
     balances <- matrix(0, nrow = n*periods + 1, ncol = input$repetitions)
@@ -104,10 +95,10 @@ server <- function(input, output) {
         counter <- counter + 1
         if (counter == 1 | counter %% (periods + 1) == 0) {
           # rate of return for current year
-          r <- rnorm(1, mean = rate_avg, sd = rate_sd)
+          r <- runif(1, min = input$min_rate/100, max = input$max_rate/100)
         }
-        # contribution at the end of period
-        balance[k+1] <- input$contribution + balance[k] * (1 + r/periods)^1
+        # balance at the end of period
+        balance[k+1] <- balance[k] * (1 + r/periods)^1
       }
       balances[ ,rept] <- balance
     }
@@ -120,7 +111,7 @@ server <- function(input, output) {
   dat_sim = reactive({
     tbl = as.data.frame(balance_mat())
     tbl$year = 0:input$years
-    
+    # reshape table to long format
     dat = pivot_longer(
       data = tbl, 
       cols = starts_with("sim"), 
@@ -141,7 +132,7 @@ server <- function(input, output) {
   
   
   # code for statistics
-  output$stats <- renderPrint({
+  output$stats <- renderDataTable({
     # quantiles 10%, 20%, ..., 100%
     quants <- quantile(balance_mat()[input$years+1,], probs = seq(0.1, 1, 0.1))
     
@@ -151,7 +142,7 @@ server <- function(input, output) {
       row.names = 1:10
     )
     
-    print(quant_df, print.gap = 3)
+    quant_df
   })
   
 } # closes server

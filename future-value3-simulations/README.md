@@ -1,8 +1,8 @@
 # Basic Investing Simulator
 
-This app simulates investing a lump sum, and optional periodic
-contributions, for a number of years. The rate of return for every year
-is a variable rate that is randomly generated according to a normal distrib.
+This app simulates investing a lump sum for a number of years. 
+The rate of return for every year is a variable rate that is randomly 
+generated according to a uniform distrib.
 
 
 ## How to run it?
