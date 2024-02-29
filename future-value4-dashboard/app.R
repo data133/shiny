@@ -1,10 +1,10 @@
 # Title: Basic Investing Simulator
-# Description: Simulates investing periodic contributions, for a number of years. 
+# Description: Simulates investing a lump sum for a number of years. 
 # The rate of return for every year is a variable rate that is randomly 
-# generated according to a normal distribution.
+# generated according to a uniform distribution.
 # Details: The layout of the app uses a dashboard theme from package "bslib" 
 # Author: Gaston Sanchez
-# Date: Fall 2023
+# Date: Spring 2024
 
 
 # ===============================================
@@ -21,7 +21,7 @@ library(plotly)
 # UI
 # =========================================================
 ui <- page_sidebar(
-  title = "Investment Simulation",
+  title = "Basic Investment Simulation",
   theme = bs_theme(
     version = 5,
     bootswatch = "cerulean",
@@ -32,19 +32,19 @@ ui <- page_sidebar(
   
   sidebar = sidebar(
     #title = "",
-    numericInput(inputId = "contrib", 
-                 label = "Annual contribution", 
-                 min = 1, 
-                 max = 500000, 
-                 value = 1000),
-    numericInput(inputId = "mu", 
-                 label = "Average return", 
-                 min = 0, 
-                 max = 2, 
+    numericInput(inputId = 'initial', 
+                 label = 'Initial Amount ($)', 
+                 min=1, 
+                 max=10000,
+                 value = 100),
+    numericInput(inputId = "min_rate", 
+                 label = "Minimum rate", 
+                 min = -0.05, 
+                 max = 0, 
                  step = 0.01,
-                 value = 0.09),
-    numericInput(inputId = "sigma", 
-                 label = "Average volatility", 
+                 value = -0.05),
+    numericInput(inputId = "max_rate", 
+                 label = "Maximum rate", 
                  min = 0, 
                  max = 1,
                  step = 0.01,
@@ -92,13 +92,13 @@ server <- function(input, output) {
     set.seed(input$seed)
 
     # output (ordinary contributions)
-    balance = matrix(0, input$num_years + 1, input$num_sims)
+    balance = matrix(input$initial, input$num_years + 1, input$num_sims)
     
     # iterations
     for (sim in 1:input$num_sims) {
-      rates = rnorm(n = input$num_years, mean = input$mu, sd = input$sigma)
+      rates = runif(n = input$num_years, min = input$min_rate, max = input$max_rate)
       for (y in 1:input$num_years) {
-        balance[y+1, sim] = balance[y, sim] * (1 + rates[y]) + input$contrib
+        balance[y+1, sim] = balance[y, sim] * (1 + rates[y])
       }
     }
     rownames(balance) = 1:(input$num_years + 1)

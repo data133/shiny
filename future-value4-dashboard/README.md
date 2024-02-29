@@ -1,8 +1,7 @@
 # Yet Another Basic Investing Simulator
 
-This app simulates investing periodic contributions at the end of the year, for 
-a number of years. 
-The rate of return for every year is a variable rate that is randomly generated according to a normal distribution.
+This app simulates investing a lump sum for a number of years. 
+The rate of return for every year is a variable rate that is randomly generated according to a uniform distribution.
 
 
 ## How to run it?
