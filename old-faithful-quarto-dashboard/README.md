@@ -31,17 +31,3 @@ This app uses the built-in data set `faithful` which is a data frame with
 
 - `waiting`: Waiting time to next eruption (in minutes).
 
-
-## How to run it?
-
-One quick way to run the app is with the `"shiny"` function `runGitHub()` as follows:
-
-```R
-library(shiny)
-
-runGitHub(
-  repo = "shiny", 
-  username = "data133", 
-  subdir = "old-faithful-quarto-dashboard")
-```
-
